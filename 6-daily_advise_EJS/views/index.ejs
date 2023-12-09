@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJS LESSON</title>
+</head>
+
+<body>
+    <section>
+        <h1>Hey, it's <%= dayType %>, <%= advice %>!</h1>
+    </section>
+    <section>
+        <%- include("./components/tags.ejs") %>
+    </section>
+    <%- include("./components/footer.ejs") %>
+</body>
+
+</html>
