@@ -46,9 +46,7 @@ const bandNameGen = (req, res, next) => {
   "author": "Victor Grinan",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2",
-    "morgan": "^1.10.0"
+    "express": "^4.18.2"
   }
 }
 ```
