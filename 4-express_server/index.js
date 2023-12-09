@@ -1,26 +1,44 @@
 import express from "express";
+// import morgan from "morgan";
+import bodyParser from "body-parser";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
+let bandName;
+/**MIDDLEWARE*/
+const logger = (req, res, next) => {
+  //custom logger
+  console.log("request method: ", req.method);
+  console.log("request url: ", req.url);
+  next();
+};
+
+const bandNameGen = (req, res, next) => {
+  bandName = `${req.body.pet}${req.body.city}`;
+  next();
+};
+
+app.use(logger);
+app.use(bodyParser.urlencoded({ extended: true })); //turns data into body format
+app.use(bandNameGen);
+// app.use(morgan("combined")); //logger
 
 app.get("/", (req, res) => {
-  console.log(req.rawHeaders);
-  res.send(`
-  <h1 style='color:blue' >Hello, Helsinki!</h1>
-  <p>Welcome to the helsinki Page</p>
-  `);
-});
-
-app.get("/contact", (req, res) => {
-  console.log(req.rawHeaders);
-  res.send(`
-    <h1 style='color:red' >Conctact, Helsinki!</h1>
-    <p>...Or not!</p>
-  `);
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.post("/register", (req, res) => {
+  console.log(req.body);
   res.sendStatus(200);
+});
+app.post("/band", (req, res) => {
+  res.send(`
+  <h1>You band Name is:</h1>
+  <h2>"The ${bandName}"</h2>
+  `);
 });
 app.put("/user/victor", (req, res) => {
   res.sendStatus(200);
