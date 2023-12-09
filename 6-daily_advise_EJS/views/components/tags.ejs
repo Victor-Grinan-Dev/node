@@ -1,13 +1,19 @@
 <div>
-    <%= data.title %>
+    <h1>
+        <%= data.title %>
+    </h1>
 
-        <% console.log(data.seconds) %>
-            <% if(data.seconds % 2===0) {%>
-                <% data.items.forEach( item=> {%>
-                    <li>
-                        <%= item %>
-                    </li>
-                    <%}) %>
-                        <%} %>
-                            <%- data.htmlContent %>
+    <% console.log(data.seconds) %>
+        <% if(data.seconds % 2===0) {%>
+            <% data.items.forEach( item=> {%>
+                <li>
+                    <%= item %>
+                </li>
+                <%}) %>
+                    <%}else{ %>
+                        <%= data.seconds %>
+                            <%} %>
+                                <br>
+                                <br>
+                                <%- data.htmlContent %>
 </div>
