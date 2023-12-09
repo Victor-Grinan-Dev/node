@@ -7,6 +7,7 @@ const app = express();
 const port = 3000;
 let day;
 let adv;
+let command = "Write your name below";
 
 const checkDay = (req, res, next) => {
   const today = new Date().getDay();
@@ -20,8 +21,17 @@ const checkDay = (req, res, next) => {
   next();
 };
 
+const countLetters = (req, res, next) => {
+  const letters = req.body.name;
+  if (letters) {
+    command = `Your name has ${letters.length} letters.`;
+  }
+  next();
+};
+
 app.use(express.urlencoded({ extended: true }));
 app.use(checkDay);
+app.use(countLetters);
 
 app.get("/", (req, res) => {
   const data = {
@@ -34,7 +44,12 @@ app.get("/", (req, res) => {
     dayType: day,
     advice: adv,
     data,
+    command: command,
   });
+});
+
+app.post("/count", (req, res) => {
+  res.redirect("/");
 });
 
 app.listen(port, () => {

@@ -8,11 +8,20 @@
 </head>
 
 <body>
+    <h1>
+        EJS EXCERCISES
+    </h1>
     <section>
-        <h1>Hey, it's <%= dayType %>, <%= advice %>!</h1>
+        <h2>1 - Daily message</h2>
+        <h3>Hey, it's <%= dayType %>, <%= advice %>!</h3>
     </section>
+    <br>
     <section>
         <%- include("./components/tags.ejs") %>
+    </section>
+    <br>
+    <section>
+        <%- include("./components/numberLetter.ejs") %>
     </section>
     <%- include("./components/footer.ejs") %>
 </body>

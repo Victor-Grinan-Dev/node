@@ -1,9 +1,9 @@
 <div>
-    <h1>
-        <%= data.title %>
-    </h1>
+    <h2>
+        2 - <%= data.title %>
+    </h2>
 
-    <% console.log(data.seconds) %>
+    <div>
         <% if(data.seconds % 2===0) {%>
             <% data.items.forEach( item=> {%>
                 <li>
@@ -11,9 +11,13 @@
                 </li>
                 <%}) %>
                     <%}else{ %>
-                        <%= data.seconds %>
-                            <%} %>
-                                <br>
-                                <br>
-                                <%- data.htmlContent %>
+                        <p>current seconds: <%= data.seconds %>
+                        </p>
+
+                        <%} %>
+    </div>
+    <div>
+        <%- data.htmlContent %>
+    </div>
+
 </div>
