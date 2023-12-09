@@ -10,9 +10,17 @@ const app = express();
 const port = 3000;
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public")); //place the style here
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/view/index.ejs");
+});
+/***ROUTES***/
+app.get("/route1", (req, res) => {
+  res.sendFile(__dirname + "/view/route1.ejs");
+});
+app.get("/route2", (req, res) => {
+  res.sendFile(__dirname + "/view/route2.ejs");
 });
 
 app.listen(port, () => {
