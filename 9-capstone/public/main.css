@@ -1,3 +1,2 @@
-body{
-    background-color: bisque;
-}
+@import "./style.css";
+@import "./styles_animations.css"

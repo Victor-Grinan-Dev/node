@@ -1,8 +1,20 @@
 <%- include("./partials/header.ejs")%>
 
-    <div>
+    <main>
+        <article id="aboutArticle" class="bgLevel1">
+            <%- include("./components/about.ejs")%>
+        </article>
 
+        <article id="portfolio" class="bgLevel2">
+            <%- include("./components/porfolio.ejs")%>
+        </article>
 
-    </div>
+        <article id="skills" class="bgLevel3">
+            <%- include("./components/skills.ejs")%>
+        </article>
+        <article id="certificates" class="bgLevel4">
+            <%- include("./components/certificates.ejs")%>
+        </article>
 
+    </main>
     <%- include("./partials/footer.ejs") %>
