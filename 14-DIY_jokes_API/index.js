@@ -4,18 +4,18 @@ import bodyParser from "body-parser";
 const app = express();
 const port = 3000;
 const masterKey = "4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT";
-const url = "http://localhost:3000/jokes";
+const url = "/jokes";
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //1. GET a random joke
-app.get("/jokes/random", (req, res) => {
+app.get(url + "/random", (req, res) => {
   const joke = jokes[Math.floor(Math.random() * jokes.length)];
   res.json(joke);
 });
 
 //2. GET a specific joke
 
-app.get("/jokes/:id", (req, res) => {
+app.get(url + "/:id", (req, res) => {
   const result = jokes.filter((j) => {
     return j.id === parseInt(req.params.id);
   });
@@ -24,7 +24,7 @@ app.get("/jokes/:id", (req, res) => {
 
 //3. GET a jokes by filtering on the joke type
 
-app.get("/jokes/filter/:type", (req, res) => {
+app.get(url + "/filter/:type", (req, res) => {
   console.log(req.params.type);
 
   const result = jokes.filter((j) => {
@@ -34,16 +34,24 @@ app.get("/jokes/filter/:type", (req, res) => {
 });
 
 //4. POST a new joke
-app.post("/jokes/new", (req, res) => {
+app.post(url + "/new", (req, res) => {
   const newJoke = { ...req.body, id: jokes.length + 1 };
   jokes.push(newJoke);
   res.json(newJoke);
 });
 
 //5. PUT a joke
-
+app.put(url + "/put/:id", (req, res) => {
+  const joke = { ...req.body, id: jokes.length + 1 };
+  jokes.push(newJoke);
+  res.json(newJoke);
+});
 //6. PATCH a joke
-
+app.patch(url + "/patch/:id", (req, res) => {
+  const newJoke = { ...req.body, id: jokes.length + 1 };
+  jokes.push(newJoke);
+  res.json(newJoke);
+});
 //7. DELETE Specific joke
 
 //8. DELETE All jokes
