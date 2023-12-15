@@ -3,7 +3,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 
 /**** page functionalities ****/
-import banner from "./functions/banner/banner";
+// import banner from "./functions/banner/banner";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
