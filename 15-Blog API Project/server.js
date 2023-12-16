@@ -14,23 +14,21 @@ app.use(bodyParser.json());
 // Route to render the main page
 app.get("/", async (req, res) => {
   try {
-    const response = await axios.get(`${API_URL}/posts`);
-    console.log(response);
+    const response = await axios.get(`${API_URL}/all`);
     res.render("index.ejs", { posts: response.data });
   } catch (error) {
     res.status(500).json({ message: "Error fetching posts" });
   }
 });
 
-// Route to render the edit page
 app.get("/new", (req, res) => {
   res.render("modify.ejs", { heading: "New Post", submit: "Create Post" });
 });
 
+// Route to render the edit page
 app.get("/edit/:id", async (req, res) => {
   try {
-    const response = await axios.get(`${API_URL}/posts/${req.params.id}`);
-    console.log(response.data);
+    const response = await axios.post(`${API_URL}/posts/${req.params.id}`);
     res.render("modify.ejs", {
       heading: "Edit Post",
       submit: "Update Post",
@@ -44,8 +42,7 @@ app.get("/edit/:id", async (req, res) => {
 // Create a new post
 app.post("/api/posts", async (req, res) => {
   try {
-    const response = await axios.post(`${API_URL}/posts`, req.body);
-    console.log(response.data);
+    const response = await axios.post(`${API_URL}/api/posts`, req.body);
     res.redirect("/");
   } catch (error) {
     res.status(500).json({ message: "Error creating post" });
@@ -74,6 +71,15 @@ app.get("/api/posts/delete/:id", async (req, res) => {
     res.redirect("/");
   } catch (error) {
     res.status(500).json({ message: "Error deleting post" });
+  }
+});
+
+app.get("/:id", async (req, res) => {
+  try {
+    const response = await axios.get(`${API_URL}/${req.params.id}`);
+    res.render("index.ejs", { posts: response.data });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching posts" });
   }
 });
 
