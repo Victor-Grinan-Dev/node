@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import pg from "pg";
 
 const app = express();
@@ -9,12 +8,12 @@ const db = new pg.Client({
   user: "postgres",
   host: "localhost",
   database: "world",
-  password: "123456",
+  password: "vitismanXD2019",
   port: 5432,
 });
 db.connect();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 let currentUserId = 1;
