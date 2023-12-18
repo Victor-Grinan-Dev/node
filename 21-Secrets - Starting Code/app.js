@@ -1,6 +1,17 @@
-import express from "express";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+
+import express from "express";
+import pg from "pg";
+
+const db = new pg.Client({
+  user: "postgres",
+  host: "localhost",
+  database: "secrets",
+  password: "vitismanXD2019",
+  port: 5432,
+});
+db.connect();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -14,7 +25,7 @@ app.get("/", (req, res) => {
     title: "TITLE",
     year: new Date().getFullYear(),
   };
-  res.render(__dirname + "/views/index.ejs", {
+  res.render(__dirname + "/views/home.ejs", {
     data,
   });
 });
